@@ -1,7 +1,6 @@
 package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.ShopDao;
-import com.codecool.web.model.Shop;
 
 import java.sql.*;
 import java.util.ArrayList;

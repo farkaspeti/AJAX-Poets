@@ -1,6 +1,5 @@
 package com.codecool.web.service;
 
-import com.codecool.web.model.Shop;
 import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;

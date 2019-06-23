@@ -3,7 +3,6 @@ package com.codecool.web.service.simple;
 import com.codecool.web.dao.CouponDao;
 import com.codecool.web.dao.ShopDao;
 import com.codecool.web.model.Coupon;
-import com.codecool.web.model.Shop;
 import com.codecool.web.service.CouponService;
 import com.codecool.web.service.exception.ServiceException;
 

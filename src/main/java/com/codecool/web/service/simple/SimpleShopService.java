@@ -1,7 +1,6 @@
 package com.codecool.web.service.simple;
 
 import com.codecool.web.dao.ShopDao;
-import com.codecool.web.model.Shop;
 import com.codecool.web.service.ShopService;
 import com.codecool.web.service.exception.ServiceException;
 

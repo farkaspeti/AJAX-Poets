@@ -1,7 +1,6 @@
 package com.codecool.web.dto;
 
 import com.codecool.web.model.Coupon;
-import com.codecool.web.model.Shop;
 
 import java.util.List;
 
