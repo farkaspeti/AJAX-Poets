@@ -1,9 +1,7 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.CouponDao;
-import com.codecool.web.dao.ShopDao;
-import com.codecool.web.dao.database.DatabaseCouponDao;
-import com.codecool.web.dao.database.DatabaseShopDao;
+import com.codecool.web.dao.PoemDao;
+import com.codecool.web.dao.database.DatabasePoemDao;
 import com.codecool.web.dto.CouponDto;
 import com.codecool.web.model.Coupon;
 import com.codecool.web.service.CouponService;
@@ -31,9 +29,9 @@ public final class CouponServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             CouponDao couponDao = new DatabaseCouponDao(connection);
-            ShopDao shopDao = new DatabaseShopDao(connection);
-            ShopService shopService = new SimpleShopService(shopDao);
-            CouponService couponService = new SimpleCouponService(couponDao, shopDao);
+            PoemDao poemDao = new DatabasePoemDao(connection);
+            ShopService shopService = new SimpleShopService(poemDao);
+            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
 
             String id = req.getParameter("id");
 
@@ -53,8 +51,8 @@ public final class CouponServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             CouponDao couponDao = new DatabaseCouponDao(connection);
-            ShopDao shopDao = new DatabaseShopDao(connection);
-            CouponService couponService = new SimpleCouponService(couponDao, shopDao);
+            PoemDao poemDao = new DatabasePoemDao(connection);
+            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
 
             String couponId = req.getParameter("id");
             String[] shopIds = req.getParameterValues("shopIds");

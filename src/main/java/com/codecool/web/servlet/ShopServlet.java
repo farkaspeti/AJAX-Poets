@@ -1,7 +1,7 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.ShopDao;
-import com.codecool.web.dao.database.DatabaseShopDao;
+import com.codecool.web.dao.PoemDao;
+import com.codecool.web.dao.database.DatabasePoemDao;
 import com.codecool.web.model.Shop;
 import com.codecool.web.service.ShopService;
 import com.codecool.web.service.exception.ServiceException;
@@ -21,8 +21,8 @@ public final class ShopServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
-            ShopDao shopDao = new DatabaseShopDao(connection);
-            ShopService shopService = new SimpleShopService(shopDao);
+            PoemDao poemDao = new DatabasePoemDao(connection);
+            ShopService shopService = new SimpleShopService(poemDao);
 
             String id = req.getParameter("id");
 

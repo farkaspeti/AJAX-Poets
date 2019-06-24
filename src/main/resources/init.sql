@@ -26,7 +26,7 @@ CREATE TABLE poems (
 INSERT INTO users (name, email, password) VALUES
 	('Arany János','aranyjani@poems', 'aj'), -- 1
 	('Babits Mihály','babos@poems', 'bm'), -- 2
-	('Petőfi Sándor''petofisanyi@poems', 'pf'); -- 3
+	('Petőfi Sándor','petofisanyi@poems', 'pf'); -- 3
 
 INSERT INTO poems(title, content,user_id) VALUES
     ('A walesi bárdok','Edward király, angol király

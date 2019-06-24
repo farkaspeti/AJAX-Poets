@@ -1,7 +1,6 @@
 package com.codecool.web.service.simple;
 
-import com.codecool.web.dao.CouponDao;
-import com.codecool.web.dao.ShopDao;
+import com.codecool.web.dao.PoemDao;
 import com.codecool.web.model.Coupon;
 import com.codecool.web.service.CouponService;
 import com.codecool.web.service.exception.ServiceException;
@@ -12,11 +11,11 @@ import java.util.List;
 public final class SimpleCouponService implements CouponService {
 
     private final CouponDao couponDao;
-    private final ShopDao shopDao;
+    private final PoemDao poemDao;
 
-    public SimpleCouponService(CouponDao couponDao, ShopDao shopDao) {
+    public SimpleCouponService(CouponDao couponDao, PoemDao poemDao) {
         this.couponDao = couponDao;
-        this.shopDao = shopDao;
+        this.poemDao = poemDao;
     }
 
     @Override
@@ -63,7 +62,7 @@ public final class SimpleCouponService implements CouponService {
     @Override
     public List<Shop> getCouponShops(String couponId) throws SQLException, ServiceException {
         try {
-            return shopDao.findAllByCouponId(Integer.parseInt(couponId));
+            return poemDao.findAllByCouponId(Integer.parseInt(couponId));
         } catch (NumberFormatException ex) {
             throw new ServiceException("Coupon id must be an integer");
         } catch (IllegalArgumentException ex) {

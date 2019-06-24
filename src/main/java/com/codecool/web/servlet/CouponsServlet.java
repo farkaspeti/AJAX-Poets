@@ -1,9 +1,7 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.CouponDao;
-import com.codecool.web.dao.ShopDao;
-import com.codecool.web.dao.database.DatabaseCouponDao;
-import com.codecool.web.dao.database.DatabaseShopDao;
+import com.codecool.web.dao.PoemDao;
+import com.codecool.web.dao.database.DatabasePoemDao;
 import com.codecool.web.model.Coupon;
 import com.codecool.web.service.CouponService;
 import com.codecool.web.service.exception.ServiceException;
@@ -25,8 +23,8 @@ public final class CouponsServlet extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             CouponDao couponDao = new DatabaseCouponDao(connection);
-            ShopDao shopDao = new DatabaseShopDao(connection);
-            CouponService couponService = new SimpleCouponService(couponDao, shopDao);
+            PoemDao poemDao = new DatabasePoemDao(connection);
+            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
 
             List<Coupon> coupons = couponService.getCoupons();
 
@@ -40,8 +38,8 @@ public final class CouponsServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
             CouponDao couponDao = new DatabaseCouponDao(connection);
-            ShopDao shopDao = new DatabaseShopDao(connection);
-            CouponService couponService = new SimpleCouponService(couponDao, shopDao);
+            PoemDao poemDao = new DatabasePoemDao(connection);
+            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
 
             String name = req.getParameter("name");
             String percentage = req.getParameter("percentage");

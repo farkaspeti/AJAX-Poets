@@ -1,6 +1,6 @@
 package com.codecool.web.service.simple;
 
-import com.codecool.web.dao.ShopDao;
+import com.codecool.web.dao.PoemDao;
 import com.codecool.web.service.ShopService;
 import com.codecool.web.service.exception.ServiceException;
 
@@ -9,21 +9,21 @@ import java.util.List;
 
 public final class SimpleShopService implements ShopService {
 
-    private final ShopDao shopDao;
+    private final PoemDao poemDao;
 
-    public SimpleShopService(ShopDao shopDao) {
-        this.shopDao = shopDao;
+    public SimpleShopService(PoemDao poemDao) {
+        this.poemDao = poemDao;
     }
 
     @Override
     public List<Shop> getShops() throws SQLException {
-        return shopDao.findAll();
+        return poemDao.findAll();
     }
 
     @Override
     public Shop getShop(String id) throws SQLException, ServiceException {
         try {
-            Shop shop = shopDao.findById(Integer.parseInt(id));
+            Shop shop = poemDao.findById(Integer.parseInt(id));
             if (shop == null) {
                 throw new ServiceException("Unknown shop");
             }
@@ -38,7 +38,7 @@ public final class SimpleShopService implements ShopService {
     @Override
     public Shop addShop(String name) throws SQLException, ServiceException {
         try {
-            return shopDao.add(name);
+            return poemDao.add(name);
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
