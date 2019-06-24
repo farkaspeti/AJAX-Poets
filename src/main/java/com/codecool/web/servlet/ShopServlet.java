@@ -3,7 +3,6 @@ package com.codecool.web.servlet;
 import com.codecool.web.dao.PoemDao;
 import com.codecool.web.dao.database.DatabasePoemDao;
 import com.codecool.web.model.Shop;
-import com.codecool.web.service.ShopService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleShopService;
 

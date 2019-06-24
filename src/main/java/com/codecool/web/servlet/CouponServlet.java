@@ -4,10 +4,9 @@ import com.codecool.web.dao.PoemDao;
 import com.codecool.web.dao.database.DatabasePoemDao;
 import com.codecool.web.dto.CouponDto;
 import com.codecool.web.model.Coupon;
-import com.codecool.web.service.CouponService;
-import com.codecool.web.service.ShopService;
+import com.codecool.web.service.PoemService;
 import com.codecool.web.service.exception.ServiceException;
-import com.codecool.web.service.simple.SimpleCouponService;
+import com.codecool.web.service.simple.SimplePoemService;
 import com.codecool.web.service.simple.SimpleShopService;
 
 import javax.servlet.ServletException;
@@ -31,13 +30,13 @@ public final class CouponServlet extends AbstractServlet {
             CouponDao couponDao = new DatabaseCouponDao(connection);
             PoemDao poemDao = new DatabasePoemDao(connection);
             ShopService shopService = new SimpleShopService(poemDao);
-            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
+            PoemService poemService = new SimplePoemService(couponDao, poemDao);
 
             String id = req.getParameter("id");
 
-            Coupon coupon = couponService.getCoupon(id);
+            Coupon coupon = poemService.getCoupon(id);
             List<Shop> allShops = shopService.getShops();
-            List<Shop> couponShops = couponService.getCouponShops(id);
+            List<Shop> couponShops = poemService.getCouponShops(id);
 
             sendMessage(resp, HttpServletResponse.SC_OK, new CouponDto(coupon, couponShops, allShops));
         } catch (ServiceException ex) {
@@ -52,12 +51,12 @@ public final class CouponServlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             CouponDao couponDao = new DatabaseCouponDao(connection);
             PoemDao poemDao = new DatabasePoemDao(connection);
-            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
+            PoemService poemService = new SimplePoemService(couponDao, poemDao);
 
             String couponId = req.getParameter("id");
             String[] shopIds = req.getParameterValues("shopIds");
 
-            couponService.addCouponToShops(couponId, shopIds);
+            poemService.addCouponToShops(couponId, shopIds);
 
             doGet(req, resp);
         } catch (SQLException ex) {

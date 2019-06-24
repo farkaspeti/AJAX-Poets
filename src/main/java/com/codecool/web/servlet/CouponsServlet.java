@@ -3,9 +3,9 @@ package com.codecool.web.servlet;
 import com.codecool.web.dao.PoemDao;
 import com.codecool.web.dao.database.DatabasePoemDao;
 import com.codecool.web.model.Coupon;
-import com.codecool.web.service.CouponService;
+import com.codecool.web.service.PoemService;
 import com.codecool.web.service.exception.ServiceException;
-import com.codecool.web.service.simple.SimpleCouponService;
+import com.codecool.web.service.simple.SimplePoemService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,9 +24,9 @@ public final class CouponsServlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             CouponDao couponDao = new DatabaseCouponDao(connection);
             PoemDao poemDao = new DatabasePoemDao(connection);
-            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
+            PoemService poemService = new SimplePoemService(couponDao, poemDao);
 
-            List<Coupon> coupons = couponService.getCoupons();
+            List<Coupon> coupons = poemService.getCoupons();
 
             sendMessage(resp, HttpServletResponse.SC_OK, coupons);
         } catch (SQLException ex) {
@@ -39,12 +39,12 @@ public final class CouponsServlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             CouponDao couponDao = new DatabaseCouponDao(connection);
             PoemDao poemDao = new DatabasePoemDao(connection);
-            CouponService couponService = new SimpleCouponService(couponDao, poemDao);
+            PoemService poemService = new SimplePoemService(couponDao, poemDao);
 
             String name = req.getParameter("name");
             String percentage = req.getParameter("percentage");
 
-            Coupon coupon = couponService.addCoupon(name, percentage);
+            Coupon coupon = poemService.addCoupon(name, percentage);
 
             sendMessage(resp, HttpServletResponse.SC_OK, coupon);
         } catch (ServiceException ex) {

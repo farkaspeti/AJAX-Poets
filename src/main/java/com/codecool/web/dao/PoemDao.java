@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PoemDao {
 
-    List<Poem> findAllByPoemId(int poemId) throws SQLException;
+    Poem findByPoemId(int poemId) throws SQLException;
 
     List<Poem> findAllByUserId(int userId) throws SQLException;
 }
